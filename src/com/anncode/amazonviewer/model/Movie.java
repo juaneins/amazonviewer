@@ -1,8 +1,14 @@
 package com.anncode.amazonviewer.model;
 
+import java.lang.annotation.Inherited;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * Clase Movie {@link Inherited} de {@link Film} implementa de {@link IVisualizable}
+ * @author jgbv
+ *
+ */
 public class Movie extends Film implements IVisualizable {
 	
 	private int id;
