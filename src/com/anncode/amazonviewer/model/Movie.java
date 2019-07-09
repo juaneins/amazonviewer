@@ -4,26 +4,36 @@ import java.lang.annotation.Inherited;
 import java.util.ArrayList;
 import java.util.Date;
 
+import com.anncode.amazonviewer.dao.MovieDAO;
+
 /**
  * Clase Movie {@link Inherited} de {@link Film} implementa de {@link IVisualizable}
  * @author jgbv
  *
  */
-public class Movie extends Film implements IVisualizable {
+public class Movie extends Film implements IVisualizable, MovieDAO {
 	
 	private int id;
 	private int timeViewed;
 	
+	public Movie() {
+		
+	}
 	
 	public Movie(String title, String genre, String creator, int duration, short year) {
 		super(title, genre, creator, duration);
 		setYear(year);
 	}
-
 	
+
 	public int getId() {
 		return id;
 	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	
 	
 	public int getTimeViewed() {
@@ -64,13 +74,16 @@ public class Movie extends Film implements IVisualizable {
 	}
 	
 	public static ArrayList<Movie> makeMoviesList() {
-		ArrayList<Movie> movies = new ArrayList<Movie>();
+		/*
+		 * ArrayList<Movie> movies = new ArrayList<Movie>();
+		 * 
+		 * for (int i = 1; i <= 5; i++) { movies.add(new Movie("Movie " + i, "Genero " +
+		 * i, "Creador " + i, 120+i, (short)(2017+i))); }
+		 */
+		Movie movie = new Movie();
 		
-		for (int i = 1; i <= 5; i++) {
-			movies.add(new Movie("Movie " + i, "Genero " + i, "Creador " + i, 120+i, (short)(2017+i)));
-		}
-		
-		return movies;
+		return movie.read();
+				
 	}
 
 
@@ -78,6 +91,8 @@ public class Movie extends Film implements IVisualizable {
 	public void view() {
 		setViewed(true);
 		Date dateI = startToSee(new Date());
+		Movie movie = new Movie();
+		movie.setMovieViewed(this);
 		
 		for (int i = 0; i < 100000; i++) {
 			System.out.println("..........");
